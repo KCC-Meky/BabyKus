@@ -21,7 +21,7 @@ contract DividendPayingToken is ERC20, Ownable, DividendPayingTokenInterface, Di
   using SafeMathUint for uint256;
   using SafeMathInt for int256;
 
-  address public immutable CAKE = address(0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82); //CAKE
+  address public CAKE = address(0x67f6a7BbE0da067A747C6b2bEdF8aBBF7D6f60dc); //CAKE
 
 
   // With `magnitude`, we can properly distribute dividends even if the amount of received ether is small.

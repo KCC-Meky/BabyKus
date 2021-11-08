@@ -17,5 +17,19 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.8.4",
+  networks: {
+    kcc_test: {
+      url: 'https://rpc-testnet.kcc.network',
+      accounts: ['']
+    },
+  },
+  solidity: {
+    version: "0.6.2",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 10
+      }
+    }
+  }
 };

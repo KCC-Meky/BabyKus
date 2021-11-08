@@ -14,12 +14,21 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
 
-  await greeter.deployed();
+  const IterableMapLib = await hre.ethers.getContractFactory("IterableMapping"); 
+  const iterableMapLib = await IterableMapLib.deploy();
+  await iterableMapLib.deployed();
+  
+  const BabyKus = await hre.ethers.getContractFactory("BABYKUS", {
+    libraries: {
+      IterableMapping: iterableMapLib.address,
+    },
+  });
+  const babyKus = await BabyKus.deploy();
 
-  console.log("Greeter deployed to:", greeter.address);
+  await babyKus.deployed();
+
+  console.log("babyKus deployed to:", babyKus.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

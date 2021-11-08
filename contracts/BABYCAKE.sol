@@ -32,7 +32,7 @@ contract BABYKUS is ERC20, Ownable {
 
     address public deadWallet = 0x000000000000000000000000000000000000dEaD;
 
-    address public immutable KUS = address(0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82); //KUS
+    address public KUS = address(0x67f6a7BbE0da067A747C6b2bEdF8aBBF7D6f60dc); //KUS
 
     uint256 public swapTokensAtAmount = 2000000 * (10**18);
     
@@ -43,7 +43,7 @@ contract BABYKUS is ERC20, Ownable {
     uint256 public marketingFee = 5;
     uint256 public totalFees = CAKERewardsFee.add(liquidityFee).add(marketingFee);
 
-    address public _marketingWalletAddress = 0x24e21EF2C3C9C93B5791d77cF934bF92a91276ba;
+    address public _marketingWalletAddress = ;
 
 
     // use by default 300,000 gas to process auto-claiming dividends
@@ -95,7 +95,7 @@ contract BABYKUS is ERC20, Ownable {
     	dividendTracker = new BABYCAKEDividendTracker();
 
 
-    	IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E);
+    	IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0xc5f442007e08e3b13C9f95fA22F2a2B9369d7C8C);
          // Create a uniswap pair for this new token
         address _uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
@@ -161,7 +161,7 @@ contract BABYKUS is ERC20, Ownable {
         emit ExcludeFromFees(account, excluded);
     }
 
-    function excludeMultipleAccountsFromFees(address[] calldata accounts, bool excluded) public onlyOwner {
+    function excludeMultipleAccountsFromFees(address[] memory accounts, bool excluded) public onlyOwner {
         for(uint256 i = 0; i < accounts.length; i++) {
             _isExcludedFromFees[accounts[i]] = excluded;
         }
@@ -480,7 +480,7 @@ contract BABYCAKEDividendTracker is Ownable, DividendPayingToken {
     mapping (address => uint256) public lastClaimTimes;
 
     uint256 public claimWait;
-    uint256 public immutable minimumTokenBalanceForDividends;
+    uint256 public minimumTokenBalanceForDividends;
 
     event ExcludeFromDividends(address indexed account);
     event ClaimWaitUpdated(uint256 indexed newValue, uint256 indexed oldValue);
